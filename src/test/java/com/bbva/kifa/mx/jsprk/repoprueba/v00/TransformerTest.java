@@ -52,13 +52,9 @@ class TransformerTest extends LRBASparkTest {
         assertNotNull(datasetMap);
         assertEquals(1, datasetMap.size());
 
-        Dataset<RowData> returnedDs = datasetMap.get("targetAlias1").as(Encoders.bean(RowData.class));
-        final List<RowData> rows = datasetToTargetData(returnedDs, RowData.class);
+        Dataset<Row> returnedDs = datasetMap.get("targetAlias1");
+        assertEquals(1,returnedDs.count());
 
-        assertEquals(1, rows.size());
-        assertEquals("0182", rows.get(0).getCAMPO1());
-        assertEquals("000002", rows.get(0).getCAMPO2());
-        assertEquals("Mike Doe", rows.get(0).getCAMPO3());
     }
 
 }

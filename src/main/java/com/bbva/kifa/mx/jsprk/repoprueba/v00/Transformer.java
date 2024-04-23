@@ -15,8 +15,8 @@ public class Transformer implements Transform {
     public Map<String, Dataset<Row>> transform(Map<String, Dataset<Row>> datasetsFromRead) {
         Map<String, Dataset<Row>> datasetsToWrite = new HashMap<>();
 
-        Dataset<RowData> dataset = datasetsFromRead.get("sourceAlias1").as(Encoders.bean(RowData.class));
-        Dataset<RowData> filteredDataset = dataset.filter(dataset.col("CAMPO2").equalTo("000002"));
+        Dataset<Row> dataset = datasetsFromRead.get("sourceAlias1");
+        Dataset<Row> filteredDataset = dataset.filter(dataset.col("CAMPO2").equalTo("000002"));
 
         datasetsToWrite.put("targetAlias1", filteredDataset.toDF());
 
